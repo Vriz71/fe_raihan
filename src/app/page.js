@@ -5,7 +5,7 @@ import Link from "next/link";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ScrollTop from "./components/ScrollTop";
-import { supabase } from '../../../lib/supabaseClient' 
+import { supabase } from "../../lib/supabaseClient";
 
 const { data, error } = await supabase.from('kegiatan').select()
 if (error) {
