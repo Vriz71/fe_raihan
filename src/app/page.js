@@ -5,7 +5,14 @@ import Link from "next/link";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ScrollTop from "./components/ScrollTop";
-// import { useEffect, useState } from 'react';
+import { supabase } from '../../../lib/supabaseClient' 
+
+const { data, error } = await supabase.from('kegiatan').select()
+if (error) {
+    alert('err')
+}
+const kegiatan = data;
+
 
 export default function Home() {
     // Disable buat tester
@@ -256,6 +263,19 @@ export default function Home() {
                 <p className="text-main text-2xl md:text-3xl font-bold text-center my-8">
                     Kegiatan Seru dan Bermakna
                 </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                    {kegiatan.map((item, index) => (
+                        <div key={item.id || index} className="flex flex-col gap-3">
+                            <img
+                                src={`${item.gambar_url}`}
+                                alt={item.judul}
+                                className="w-full max-w-sm mx-auto object-cover rounded-lg"
+                            />
+                            <h1 className="text-lg font-semibold">{item.judul}</h1>
+                            <p>{item.deskripsi}</p>
+                        </div>
+                    ))}
+                </div>
 
                 {/* Disable buat tester */}
                 {/*
