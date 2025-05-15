@@ -2,12 +2,13 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ScrollTop from '../components/ScrollTop'
+import { supabase } from '../../../lib/supabaseClient' 
 
-const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/kegiatans?populate=gambar`, {
-    cache: 'no-store', // Biar selalu fresh datanya
-});
-const json = await res.json();
-const kegiatan = json.data;
+const  {data,error }= await supabase.from('kegiatan') .select()
+if(error){
+    alert('err')
+}
+    const kegiatan = data;
 
 
 function Kegiatan() {
@@ -47,12 +48,12 @@ function Kegiatan() {
                     {kegiatan.map((item, index) => (
                         <div key={item.id || index} className="flex flex-col gap-3">
                             <img
-                                src={`${process.env.NEXT_PUBLIC_API_URL}${item.gambar?.url}`}
+                                src={`${item.gambar_url}`}
                                 alt={item.judul}
                                 className="w-full max-w-sm mx-auto object-cover rounded-lg"
                             />
                             <h1 className="text-lg font-semibold">{item.judul}</h1>
-                            <p>{item.deskripsi[0]?.children[0]?.text}</p>
+                            <p>{item.deskripsi  }</p>
                         </div>
                     ))}
                 </div>

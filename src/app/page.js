@@ -5,22 +5,23 @@ import Link from "next/link";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ScrollTop from "./components/ScrollTop";
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 export default function Home() {
-    const [kegiatan, setKegiatan] = useState([]);
+    // Disable buat tester
+    // const [kegiatan, setKegiatan] = useState([]);
 
-    useEffect(() => {
-        const fetchKegiatan = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/kegiatans?populate=gambar`, {
-                cache: 'no-store', // Biar selalu fresh datanya
-            });
-            const json = await res.json();
-            setKegiatan(json.data);
-        };
+    // useEffect(() => {
+    //     const fetchKegiatan = async () => {
+    //         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/kegiatans?populate=gambar`, {
+    //             cache: 'no-store', // Biar selalu fresh datanya
+    //         });
+    //         const json = await res.json();
+    //         setKegiatan(json.data);
+    //     };
 
-        fetchKegiatan();
-    }, []);
+    //     fetchKegiatan();
+    // }, []);
 
     // const [tentang, setTentang] = useState([]);
 
@@ -256,6 +257,8 @@ export default function Home() {
                     Kegiatan Seru dan Bermakna
                 </p>
 
+                {/* Disable buat tester */}
+                {/*
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                     {kegiatan.map((item, index) => (
                         <div key={item.id || index} className="flex flex-col gap-3">
@@ -269,6 +272,7 @@ export default function Home() {
                         </div>
                     ))}
                 </div>
+                 */}
 
                 <div className="flex justify-center my-10">
                     <Link href="/kegiatan">
